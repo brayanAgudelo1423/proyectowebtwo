@@ -1,0 +1,120 @@
+:root{
+--accent: #0fa867;
+  --accent-dark: #0b8c55;
+}
+
+.dashboard-page{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display:flex;
+  flex-direction:column;
+  background: white;
+  color: #111;
+  overflow: auto;
+}
+
+.dashboard-top-left{
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 5;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:6px;
+  background: white;
+}
+.dashboard-top-left img{ width:64px; height:64px; object-fit:contain }
+.logo-btn{ background:transparent; border:0; padding:0; display:inline-flex; align-items:center; justify-content:center; cursor:pointer }
+.logo-btn:focus{ outline: 3px solid rgba(11,108,214,0.16); border-radius:6px }
+
+.dashboard-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center; /* center when there's room */
+  padding:40px 40px 80px; /* extra bottom padding so last tiles aren't flush to edge */
+  min-height: calc(100vh - 56px); /* ensure centered when content is shorter than viewport, footer height subtracted */
+}
+
+.dashboard-main h1{ font-size:36px; margin-bottom:32px }
+
+.dash-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 260px);
+  gap:48px 72px;
+  justify-content:center;
+  align-items:center;
+}
+
+.dash-item{ display:flex; flex-direction:column; align-items:center; gap:12px; background:transparent; border:0; padding:0; cursor:pointer }
+.dash-item:focus{ outline: 4px solid rgba(11,108,214,0.12); border-radius:8px }
+  .dash-square{ width:220px; height:220px; background:white; display:flex; align-items:center; justify-content:center; box-shadow: none; border: 0; border-radius:10px; animation: gentlePulse 3s ease-in-out 700ms infinite; }
+  .dash-icon{ font-size:96px; color:var(--accent); }
+  .dash-label{ font-weight:700; margin-top:12px; color:#000 }
+
+/* Admin tile highlight and entrance animation */
+@keyframes popIn {
+  0% { transform: translateY(12px) scale(0.92); opacity: 0 }
+  60% { transform: translateY(-6px) scale(1.04); opacity: 1 }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.dash-item { animation: popIn 560ms cubic-bezier(.2,.9,.2,1) both; }
+
+/* staggered entrance for tiles */
+.dash-grid .dash-item:nth-child(1) { animation-delay: 60ms }
+.dash-grid .dash-item:nth-child(2) { animation-delay: 140ms }
+.dash-grid .dash-item:nth-child(3) { animation-delay: 220ms }
+.dash-grid .dash-item:nth-child(4) { animation-delay: 300ms }
+.dash-grid .dash-item:nth-child(5) { animation-delay: 380ms }
+.dash-grid .dash-item:nth-child(6) { animation-delay: 460ms }
+.dash-grid .dash-item:nth-child(7) { animation-delay: 540ms }
+.dash-grid .dash-item:nth-child(8) { animation-delay: 620ms }
+
+@keyframes gentlePulse {
+  0% { box-shadow: 0 6px 18px rgba(15,168,103,0.06) }
+  50% { box-shadow: 0 14px 28px rgba(15,168,103,0.10) }
+ 100% { box-shadow: 0 6px 18px rgba(15,168,103,0.06) }
+}
+
+
+/* Continuous subtle float for all icons */
+@keyframes iconFloat {
+  0% { transform: translateY(0) scale(1) }
+  25% { transform: translateY(-6px) scale(1.02) }
+  50% { transform: translateY(0) scale(1) }
+  75% { transform: translateY(6px) scale(0.99) }
+ 100% { transform: translateY(0) scale(1) }
+}
+
+/* apply continuous animation to icons; keep entrance popIn on the button itself */
+
+.dash-item .dash-icon { animation: iconFloat 4s ease-in-out 900ms infinite; transform-origin: center; }
+
+.dashboard-footer{ height:56px; background:var(--accent); display:flex; align-items:center; padding-left:12px }
+
+
+@media (max-width:760px){
+  .dash-grid{ grid-template-columns: 1fr 1fr; gap:28px }
+  .dash-square{ width: 120px; height:120px }
+  .dash-icon{ font-size:72px }
+}
+
+/* Reduce sizes and gaps for shorter viewports so Admin tile is reachable */
+@media (max-height:820px){
+  .dash-grid{ gap:20px 36px }
+  .dash-square{ width:180px; height:180px }
+  .dash-icon{ font-size:76px }
+}
+
+@media (max-height:720px){
+  .dash-grid{ gap:14px 24px }
+  .dash-square{ width:140px; height:140px }
+  .dash-icon{ font-size:64px }
+  .dash-label{ font-size:14px }
+}

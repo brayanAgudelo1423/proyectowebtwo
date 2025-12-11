@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+coverage
+
+# Builds
+playtime/dist
+server/dist
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# node 
+node_modules/
+playtime/node_modules/
+server/node_modules/
+
+# Env files (no credenciales en git)
+.env
+server/.env
+playtime/.env
+playtime/.env.local
+
+# Bases locales (SQLite)
+server/dev.sqlite
+server/*.sqlite
+

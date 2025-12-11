@@ -1,0 +1,144 @@
+/* Hero styles for PlayTime landing */
+:root{
+  --accent: #0fa867;
+  --accent-dark: #0b8c55;
+  --muted: #e6f3ea;
+}
+
+html,body,#root { height: 100%; }
+body { margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+.hero{
+  /* make the hero cover the entire viewport even if body is a flex container */
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100svh; /* prefer the small viewport unit on supporting mobile browsers to avoid address-bar issues */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 0;
+}
+.login-page{
+  /* make the login page cover the entire viewport so it appears fullscreen
+     even though body uses flex centering. Using fixed positioning ensures
+     it fills the window and overlays the dark body background. */
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  color: #111;
+}
+
+.hero-bg{
+  position: absolute;
+  inset: 0;
+  background-image: url('/background.jpg'); /* put your background image at playtime/public/background.jpg */
+  background-size: cover; /* cover makes the image scale to cover the viewport */
+  background-position: center center; /* keep focal point centered */
+  background-repeat: no-repeat; /* avoid tiling */
+  /* width/height ensure the absolutely positioned element fills the viewport */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  filter: saturate(0.95) contrast(0.95);
+  z-index: 0;
+  /* Optional: on desktop you can use fixed to keep background steady, but mobile browsers
+     may handle 100vh differently when address bar hides/shows. Uncomment if desired:
+  background-attachment: fixed; */
+}
+
+/* Alternative approach: use an <img class="bg-img"> inside the hero and object-fit:cover.
+   This can avoid some mobile 100vh issues. To use it, add in App.jsx:
+
+   <img src="/background.jpg" alt="" className="bg-img" />
+
+   and ensure .bg-img is positioned beneath content (z-index).
+*/
+.bg-img{
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures full coverage while preserving aspect ratio */
+  object-position: center center;
+  z-index: 0;
+  display: block;
+  pointer-events: none; /* allow clicks to pass through to buttons */
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 3, 3, 0.35), rgba(0,0,0,0.45));
+  z-index: 1;
+}
+
+.hero-inner{
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 40px 24px;
+  max-width: 920px;
+}
+
+.logo-wrap{ display:flex; justify-content:center; }
+.logo-img{
+   object-fit:cover; background:transparent; padding:0px;
+}
+
+.hero-title{
+  font-size:48px; margin:18px 0 6px; color:var(--muted); font-weight:700; letter-spacing:0.5px;
+}
+.hero-sub{ font-size:20px; margin:0 0 28px; color:#ffffff; opacity:0.95 }
+
+.hero-actions{ display:flex; gap:20px; justify-content:center; align-items:center; flex-wrap:wrap }
+.btn{ padding:14px 26px; font-size:18px; border-radius:6px; border:0; cursor:pointer; box-shadow:0 8px 20px rgba(2,6,23,0.24); }
+.btn.primary{ background:var(--accent); color:white; font-weight:400 }
+.btn.primary:hover{ background:var(--accent-dark); transform:translateY(-2px); }
+.btn.ghost{ background:var(--accent); color:white; padding:14px 26px; box-shadow:0 8px 20px rgba(2,6,23,0.24); font-weight:400 }
+.btn.ghost:hover{ background:var(--accent-dark); transform:translateY(-2px); }
+
+@media (max-width:520px){
+  .hero-title{ font-size:32px }
+  .hero-sub{ font-size:16px }
+  .logo-img{ width:72px; height:72px }
+  .btn{ width:100%; max-width:320px }
+  .hero-actions{ flex-direction:column }
+}
+
+.login-header{ position:relative; padding:24px }
+.login-top-logo{ width:72px; height:72px; }
+.login-main{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px }
+.login-main h2{ font-size:32px; margin-bottom:32px }
+.login-form{ width:420px; max-width:92%; display:flex; flex-direction:column; gap:20px }
+.login-form label{ display:block }
+.login-form .label{ display:block; font-size:12px; margin-bottom:8px; color:#333; font-weight:600 }
+.login-form input{ width:100%; padding:12px 14px; border:1px solid #cfcfcf; border-radius:4px }
+.login-submit{ background:#0fa867; color:white; padding:14px; font-weight:400; border-radius:6px }
+.login-register{ margin-top:18px; text-align:center }
+.login-footer{ height:36px; background:#0fa867 }
+
+.link-button{
+  background:transparent;
+  border:0;
+  color:var(--accent);
+  text-decoration:underline;
+  cursor:pointer;
+  padding:0;
+  font-size:inherit;
+}
+
+@media (max-width:640px){
+  .login-form{ width:320px }
+  .login-main h2{ font-size:26px }
+}

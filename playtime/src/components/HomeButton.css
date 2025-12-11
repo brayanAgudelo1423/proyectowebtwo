@@ -1,0 +1,19 @@
+:root{
+  --home-default-size: 50px;
+}
+
+.home-btn{
+  border-radius:8px;
+  border:0;
+  background: transparent;
+  color: white;
+  margin-left:8px;
+  box-shadow:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+}
+
+.home-emoji{ line-height:1 }

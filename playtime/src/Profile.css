@@ -1,0 +1,53 @@
+:root{
+  --accent: #0fa867;
+  --logo-border: #1473ff;
+}
+
+.profile-page{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display:flex;
+  flex-direction:column;
+  background: white;
+  color: #111;
+}
+
+.profile-top-left{
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 5;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border:0; 
+  border-radius:6px;
+  background: white;
+}
+.profile-top-left img{ width:64px; height:64px; object-fit:contain }
+
+.profile-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:40px 24px;
+}
+
+.profile-main h1{ font-size:28px; margin-bottom:18px }
+
+.profile-form{ width:480px; max-width:92%; display:flex; flex-direction:column; gap:18px }
+.profile-form .label{ display:block; font-size:12px; margin-bottom:8px; color:#333; font-weight:600 }
+.profile-form input{ width:100%; padding:12px 14px; border:1px solid #cfcfcf; border-radius:4px }
+.profile-submit{ background:var(--accent); color:white; padding:14px 22px; font-weight:700; border-radius:6px }
+
+.profile-footer{ height:36px; background:var(--accent); }
+.profile-footer{ height:36px; background:var(--accent); display:flex; align-items:center; padding-left:12px }
+/* Home button styles moved to `src/components/HomeButton.css` */
+
+@media (max-width:640px){
+  .profile-form{ width:320px }
+}
